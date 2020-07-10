@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,8 +19,8 @@ import com.google.firebase.dynamiclinks.FirebaseDynamicLinks;
 import com.google.firebase.dynamiclinks.ShortDynamicLink;
 
 public class MainActivity extends AppCompatActivity {
-    private Button button;
-    String variable = "varun jain " , url = "https://celebrare.in/";
+    private Button button , button2;
+    String variable = "varun jain ", url = "https://celebrare.in/";
 //    private EditText editText;
 
     @Override
@@ -28,6 +29,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         button = findViewById(R.id.button);
+        button2 = findViewById(R.id.button2);
+
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, MainActivity2.class);
+                startActivity(intent);
+            }
+        });
+
+
 
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,19 +53,20 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public  void  generateContentLink() {
+    public void generateContentLink() {
         Uri baseUrl = Uri.parse("https://dynamiclinkinffirebase.page.link");
         String domain = "https://dynamiclinkinffirebase.page.link";
+        String query = "?sharedimageurl=" + "https://avatars3.githubusercontent.com/u/53621853?s=400&u=de320b6f522f3324586c977c54aad9af3de890fb&v=4";
 
         FirebaseDynamicLinks.getInstance().createDynamicLink()
-                .setLink(Uri.parse("https://celebrare.in/"))
+                .setLink(Uri.parse("https://celebrare.in/" + query))
                 .setDomainUriPrefix(domain)
                 .setAndroidParameters(new
                         DynamicLink.AndroidParameters.Builder().build())
                 .setSocialMetaTagParameters(
                         new DynamicLink.SocialMetaTagParameters.Builder()
-                                .setTitle("Enter Title")
-                                .setDescription("Enter Desc here")
+                                .setTitle("Varun's App")
+                                .setDescription("This is a dynamic link")
                                 .setImageUrl(Uri.parse("https://avatars3.githubusercontent.com/u/53621853?s=400&u=de320b6f522f3324586c977c54aad9af3de890fb&v=4"))
                                 .build())
                 .buildShortDynamicLink()
@@ -64,12 +77,12 @@ public class MainActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Intent intent = new Intent();
                                 intent.setAction(Intent.ACTION_SEND);
-                                intent.putExtra(Intent.EXTRA_TEXT,task.getResult().getShortLink().toString());
+                                intent.putExtra(Intent.EXTRA_TEXT, "Hi friend , this is an awesome app and i hope you like it , i am sharing you a card that you can see by opening the app at this link  \n" + task.getResult().getShortLink().toString() + "\n and if you want to open it in the mobile browser , then click on this link \n" + Uri.parse(url));
                                 intent.setType("text/plain");
                                 startActivity(intent);
                             } else {
 
-                                Log.d("Error" , "there is a error"+task.getResult().getShortLink().toString());
+                                Log.d("Error", "there is a error" + task.getResult().getShortLink().toString());
                             }
                         }
                     }
