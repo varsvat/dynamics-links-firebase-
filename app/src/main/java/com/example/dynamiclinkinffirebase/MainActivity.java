@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 //        editText = findViewById(R.id.edittext);
 
     }
-
+// there os some problem i think
     public void generateContentLink() {
         Uri baseUrl = Uri.parse("https://dynamiclinkinffirebase.page.link");
         String domain = "https://dynamiclinkinffirebase.page.link";
