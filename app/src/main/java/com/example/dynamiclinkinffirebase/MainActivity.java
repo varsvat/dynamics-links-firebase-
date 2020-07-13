@@ -56,7 +56,9 @@ public class MainActivity extends AppCompatActivity {
     //this is the first change
 //this is the second change
     //this is  a new branch
-
+//frefer
+    //changingbranch after changing the master
+//changing master
     /*
     you have to make new branch then make changes to the master branch and then make some in branch and then try to pull from the master and then try to push the branch to the master that is exactly same as the merging of the branch into the master branch
     */
