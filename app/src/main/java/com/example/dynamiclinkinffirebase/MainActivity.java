@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
     }
 // there os some problem i think
     //this is the first change
+//this is the second change
     public void generateContentLink() {
         Uri baseUrl = Uri.parse("https://dynamiclinkinffirebase.page.link");
         String domain = "https://dynamiclinkinffirebase.page.link";
